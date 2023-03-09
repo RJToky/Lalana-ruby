@@ -1,0 +1,2 @@
+class Prestataire < ApplicationRecord
+end

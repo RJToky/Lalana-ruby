@@ -1,0 +1,2 @@
+class TypeLalana < ApplicationRecord
+end

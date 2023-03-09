@@ -1,0 +1,2 @@
+class Lalana < ApplicationRecord
+end
