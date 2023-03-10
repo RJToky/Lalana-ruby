@@ -1,0 +1,2 @@
+class Pk < ApplicationRecord
+end

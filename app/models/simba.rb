@@ -1,0 +1,2 @@
+class Simba < ApplicationRecord
+end

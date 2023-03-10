@@ -16,10 +16,13 @@
             <tr>
               <th>id</th>
               <th>Nom</th>
-              <th>prix</th>
+              <th>Qualite</th>
+              <th>Prix unitaire</th>
               <th>a</th>
               <th>v</th>
               <th>p</th>
+              <th>Cout total</th>
+              <th>Duree total</th>
               <th>Qualite prix</th>
             </tr>
           </thead>
@@ -29,10 +32,13 @@
               <tr>
                 <td><%= item["id"] %></td>
                 <td><%= item["nom"] %></td>
-                <td><%= item["prix"] %></td>
+                <td><%= VPrestataire.calc_qualite(row.id, item["id"])["qualite"] %></td>
+                <td><%= item["prix"] %> Ar</td>
                 <td><%= item["a"] %></td>
                 <td><%= item["v"] %></td>
                 <td><%= item["p"] %></td>
+                <td><%= Lalana.calc_cout_rn(row.id, item["id"])["cout_total"] %> Ar</td>
+                <td><%= Lalana.calc_duree_rn(row.id, item["id"])["duree_total"] %> j</td>
                 <td><%= item["qualiteprix"] %></td>
               </tr>
             <% end %>

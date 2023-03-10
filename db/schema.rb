@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_150407) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_10_121450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_150407) do
   create_table "lalanas", force: :cascade do |t|
     t.string "nom"
     t.float "largeur"
-    t.bigint "idtypelalana"
+  end
+
+  create_table "pks", force: :cascade do |t|
+    t.float "valeur"
+    t.bigint "idlalana"
   end
 
   create_table "prestataires", force: :cascade do |t|
@@ -33,6 +37,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_150407) do
     t.float "penalite"
   end
 
+  create_table "simbas", force: :cascade do |t|
+    t.bigint "pk_debut"
+    t.bigint "pk_fin"
+    t.float "niveau"
+  end
+
   create_table "type_lalanas", force: :cascade do |t|
     t.string "nom"
     t.float "prix"
@@ -40,7 +50,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_150407) do
   end
 
   add_foreign_key "formules", "lalanas", column: "idlalana"
-  add_foreign_key "lalanas", "type_lalanas", column: "idtypelalana"
+  add_foreign_key "pks", "lalanas", column: "idlalana"
+  add_foreign_key "simbas", "pks", column: "pk_debut"
+  add_foreign_key "simbas", "pks", column: "pk_fin"
 
   create_view "v_prestataires", sql_definition: <<-SQL
       SELECT prestataires.id,

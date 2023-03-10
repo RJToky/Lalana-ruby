@@ -1,22 +1,28 @@
 create database lalana_ruby;
 
-drop table type_lalanas cascade;
 drop table lalanas cascade;
+drop table pks cascade;
+drop table simbas cascade;
 drop table prestataires cascade;
 drop table formules cascade;
-
-create table type_lalanas (
-    id serial primary key,
-    nom varchar(20),
-    prix double precision,
-    duree double precision
-);
 
 create table lalanas (
     id serial primary key,
     nom varchar(20),
-    largeur double precision,
-    idtypeLalana bigint references type_lalanas(id)
+    largeur double precision
+);
+
+create table pks (
+    id serial primary key,
+    valeur double precision,
+    idlalana bigint references lalanas(id)
+);
+
+create table simbas (
+    id serial primary key,
+    pk_debut bigint references pks(id),
+    pk_fin bigint references pks(id),
+    niveau double precision check(niveau between 0 and 100)
 );
 
 create table prestataires (
