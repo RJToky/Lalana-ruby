@@ -57,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_121450) do
   create_view "v_prestataires", sql_definition: <<-SQL
       SELECT prestataires.id,
       prestataires.nom,
-      EXTRACT(year FROM age((CURRENT_DATE)::timestamp with time zone, (prestataires.date_creation)::timestamp with time zone)) AS a,
+      date_part('year'::text, age((CURRENT_DATE)::timestamp with time zone, (prestataires.date_creation)::timestamp with time zone)) AS a,
       prestataires.prix,
       prestataires.vitesse AS v,
       prestataires.penalite AS p
